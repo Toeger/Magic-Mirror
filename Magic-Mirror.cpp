@@ -37,21 +37,27 @@ class Inventory {
 
 namespace Town {
 	struct Black_Smith {
+		struct Back_Entrance {};
+
 		private:
+		struct Storage_Key {};
 		struct Master_Sword {
 			operator int() {
 				return {};
 			}
 		};
 		struct Training_Sword {};
+		struct Wooden_Shield {};
 		friend struct Ruins::Dire_Wolf;
-		struct Back_Entrance {};
 
 		public:
 		static Master_Sword buy_Master_Sword(Inventory::Money) {
 			return {};
 		}
 		static Training_Sword steal_Training_Sword(Back_Entrance) {
+			return {};
+		}
+		static Wooden_Shield steal_Wooden_Shield(Storage_Key) {
 			return {};
 		}
 	};
@@ -61,6 +67,10 @@ namespace Town {
 
 //! TODO: Define a variable named training_sword of type Town::Black_Smith::Training_Sword inside main
 
+/* You will also need a shield. You know the Black Smith keeps one under a Trap Door, but that is locked and you don't have the key. Can you pick the lock? */
+
+//! TODO: Define a variable named wooden_shield of type Town::Black_Smith::Wooden_Shield inside main
+
 /* With the Training Sword you can go fight off the Dire Wolf guarding the Entrance to the Ruins */
 
 namespace Ruins {
@@ -69,8 +79,8 @@ namespace Ruins {
 		struct Ruin_Entrance {};
 
 		public:
-		static void slay_wolf(int);
-		static Ruin_Entrance slay_wolf(Town::Black_Smith::Training_Sword) {
+		static void slay_wolf(int, int);
+		static Ruin_Entrance slay_wolf(Town::Black_Smith::Training_Sword, Town::Black_Smith::Wooden_Shield) {
 			return {};
 		}
 	};
@@ -154,6 +164,7 @@ struct Layer {
 
 int main() {
 	//[[maybe_unused]] auto training_sword =
+	//[[maybe_unused]] auto wooden_shield =
 	//[[maybe_unused]] auto ruin_entrance =
 	//[[maybe_unused]] auto necromancer_key =
 	//[[maybe_unused]] auto adamantite_key =
