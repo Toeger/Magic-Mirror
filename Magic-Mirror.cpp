@@ -86,7 +86,7 @@ namespace Ruins {
 	};
 } // namespace Ruins
 
-//! TODO: Define a variable named ruin_entrance of type Ruins::Dire_Wolf::Ruin_Entrance inside main using variable training_sword from above
+//! TODO: Define a variable named ruin_entrance of type Ruins::Dire_Wolf::Ruin_Entrance inside main using variable training_sword from above.
 
 /* After slaying the wolf easy enough, you enter the Ruins. Inside you see a Necromancer, wearing the Key of Life.
  * You know you cannot beat the Necromancer. But maybe you can trick him.
@@ -103,14 +103,13 @@ class Necromancer : Foul_Magic {
 	public:
 	auto take(Foul_Magic *foul_magic) {
 		if (foul_magic != this) {
-			std::cerr << "You are not a real Necromancer!";
-			std::terminate();
+			throw std::runtime_error{"You are not a real Necromancer!"};
 		}
 		return Key_of_Life{};
 	}
 };
 
-//! TODO: Define a variable named necromancer_key of type Necromancer::Key_of_Life inside main. The program must finish through main and should not abort due to std::terminate().
+//! TODO: Define a variable named necromancer_key of type Necromancer::Key_of_Life inside main.
 
 /* After taking the Key of Life you enter the Ruins and are met with 2 corridors, each containing a real dragon!
  * You can see that each dragon guards a key and you can almost reach it, but Magic keeps preventing you from reaching them.
