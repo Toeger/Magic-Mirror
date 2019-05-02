@@ -15,6 +15,7 @@ Step 3 is to call `Ruins::Dire_Wolf::slay_wolf` with your equipment to get the `
 You are probably missing some more or less obscure C++ feature. Some of the following might help:
 https://en.cppreference.com/w/cpp/language/list_initialization  
 https://en.cppreference.com/w/cpp/language/friend  
+https://en.cppreference.com/w/cpp/language/cast_operator  
 https://en.cppreference.com/w/cpp/language/adl  
 
 ## I did it! Should I show everyone my solution?
