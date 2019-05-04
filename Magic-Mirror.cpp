@@ -115,8 +115,8 @@ class Necromancer : Foul_Magic {
 
 //! TODO: Define a variable named necromancer_key of type Necromancer::Key_of_Life inside main.
 
-/* After taking the Key of Life you go towards the Dungeon. But before you can enter, you find yourself surrounded by a group of Thiefs.
- * "We are here on orders of the Thief's Guild. Our spies report that you have a talent for magically getting through locks."
+/* After taking the Key of Life you go towards the Dungeon. But before you can enter, you find yourself surrounded by a group of Thieves.
+ * "We are here on orders of the Thieves Guild. Our spies report that you have a talent for magically getting through locks."
  * They continue "You were commissioned to produce a Skeleton Key that works on any lock. Also we will be taking that Key of Life."
  * They explain that you are not forced to comply and are free to choose death instead. You think it might be better to do it. */
 
@@ -125,25 +125,78 @@ class Thiefs {
 		struct Unknown_Key {};
 		class Treasure {
 			struct Coins {
+				Coins(Coins &&) = default;
+
+				private:
+				Coins() {}
+				Coins(const Coins &) = delete;
+				friend class Treasure;
 			} coins;
 			Treasure() {}
 			friend class Thiefs;
+			friend class Thiefs_Shop;
 		};
 		static Treasure rob(Unknown_Key) {
 			return {};
 		}
 		friend class Thiefs;
+		friend class Thiefs_Shop;
 	};
+	friend class Thiefs_Shop;
 
 	public:
 	template <class Skeleton_Key>
 	static auto comply(Necromancer::Key_of_Life, Skeleton_Key key) {
-		return Secret_Location::rob(key).coins;
+		auto treasure = Secret_Location::rob(key);
+		return std::move(treasure.coins);
 	}
 };
 //! TODO: Define a variable named coins of type Thiefs::Secret_Location::Treasure::Coins inside main.
 
-/* As you explore the Dungeon, find 2 corridors, each containing a real Dragon!
+/* That worked out well! Have some Coins as your reward. Let nobody say the Thieves Guild does not pay its employees. We'll keep the rest safe.
+ * Since this worked so well, let's rob the Mages Guild! They are not so easy though. We tried to use the Skeleton Key and it failed.
+ * But we learned that there are 2 checks made by the Lock: A Physical Check that we already know to beat, and a Magical Check
+ * that defies our thief's tools. We ... convinced ... one of the mages to give us a hand in breaking the Seal. Unfortunately we don't
+ * know how to apply it. That's where you come in. Of course the Seal Breaker is not free, it'll cost you ...
+ */
+class Mages_Guild {
+	class Seal_Breaker {
+		Seal_Breaker() {}
+		friend class Thiefs_Shop;
+		//friend Mages_Tower;
+	};
+	struct Physical_Check {};
+	struct Magic_Check {
+		Magic_Check(Seal_Breaker) {}
+	};
+	struct Artefact {};
+	static Artefact access(Physical_Check, Magic_Check) {
+		return {};
+	}
+	friend class Thiefs_Shop;
+};
+
+class Thiefs_Shop {
+	public:
+	static Mages_Guild::Seal_Breaker buy(Thiefs::Secret_Location::Treasure::Coins &&coins) {
+		(void)coins; //gone
+		return {};
+	}
+	template <class Seal_Breaker_Key>
+	static auto rob_Mages_Guild(Seal_Breaker_Key key) {
+		return Mages_Guild::access(key, key);
+	}
+};
+
+/* The thief gives you a last hint:
+ * "Before he die... I mean left us, the mage said you need some Seal Force Incantation Night Arcane Enchantment on the key.
+ * No idea what that means." */
+
+//! TODO: Define a variable named Artefact of type Mages_Guild::Artefact inside main.
+
+/* "What a waste!" the Thief exclaims. "This thing does nothing. You can have it. I'm done with you!"
+ * You take the Artefact and venture forth into the Dungeon.
+ * As you explore the Dungeon, find 2 corridors, each containing a real Dragon!
  * You can see that each Dragon guards a key and you can almost reach it, but Magic keeps preventing you from reaching them.
  * You must find a way to break through! */
 
@@ -200,6 +253,7 @@ int main() {
 	//[[maybe_unused]] auto ruin_entrance = //Ruins::Dire_Wolf::Ruin_Entrance
 	//[[maybe_unused]] auto necromancer_key = //Necromancer::Key_of_Life
 	//[[maybe_unused]] auto coins = //Thiefs::Secret_Location::Treasure::Coins
+	//[[maybe_unused]] auto artefact = //Mages_Guild::Artefact
 	//[[maybe_unused]] auto adamantite_key = //Adamantite_Dragon_Layer::Adamantite_Key
 	//[[maybe_unused]] auto amethyst_key = //Magic::Amethyst_Key
 	//auto money = Layer::loot_the_layer(adamantite_key, amethyst_key);
