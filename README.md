@@ -2,7 +2,7 @@
 Play a C++ puzzle text adventure (?), defeat monsters at compiletime and runtime, and return the Magic Mirror!
 
 ## How to play
-Copy the contents of [Magic-Mirror.cpp](https://raw.githubusercontent.com/Toeger/Magic-Mirror/master/Magic-Mirror.cpp) into your IDE or a website like https://coliru.stacked-crooked.com, uncomment the comments inside `main` and get the code to compile and run.
+Copy the contents of [Magic-Mirror.cpp](https://raw.githubusercontent.com/Toeger/Magic-Mirror/master/Magic-Mirror.cpp) into your IDE or a website like https://coliru.stacked-crooked.com, uncomment the comments inside `main` and get the code to compile and run. You can use C++14 and above. The code does not compile in C++11.
 
 ## I don't get it, the code doesn't do anything
 Correct. The point is to find a way to get at the more or less hidden types required to progress.
