@@ -20,3 +20,8 @@ https://en.cppreference.com/w/cpp/language/adl
 
 ## I did it! Should I show everyone my solution?
 Congratulations! Please don't. Puzzles are no fun when the solution is spoiled.
+
+## Thanks
+Thanks to melak47 for suggesting the Skeleton Key.  
+Thanks to marttyfication for reminding me of the String issues. Also for keeping me from [being racist](https://github.com/Toeger/Magic-Mirror/commit/6fa6fac2e723ac0b55bbf988204abd6f80f6382c).  
+Thanks to [NotAPenguin](https://github.com/CodeSheep123) for breaking the Dragon Layer until it split into 2.  
