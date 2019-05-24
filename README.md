@@ -24,5 +24,5 @@ Congratulations! Please don't. Puzzles are no fun when the solution is spoiled.
 ## Thanks
 Thanks to melak47 for suggesting the Skeleton Key.  
 Thanks to marttyfication for reminding me of the String issues. Also for keeping me from [being racist](https://github.com/Toeger/Magic-Mirror/commit/6fa6fac2e723ac0b55bbf988204abd6f80f6382c).  
-Thanks to [NotAPenguin](https://github.com/CodeSheep123) for breaking the Dragon Layer until it split into 2.  
+Thanks to [NotAPenguin](https://github.com/NotAPenguin0) for breaking the Dragon Layer until it split into 2.  
 Thanks to [Arne Mertz](https://arne-mertz.de/about-me/) for writing about the [passkey idiom](https://arne-mertz.de/2016/10/passkey-idiom/) that inspired this game.
