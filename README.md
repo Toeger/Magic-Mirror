@@ -7,7 +7,7 @@ Copy the contents of [Magic-Mirror.cpp](https://raw.githubusercontent.com/Toeger
 ## I don't get it, the code doesn't do anything
 Correct. The point is to find a way to get at the more or less hidden types required to progress.
 
-Step 1 is to uncomment `[[maybe_unused]] auto training_sword =` and find a way to get it. The solution is `[[maybe_unused]] auto training_sword = Town::Blacksmith::steal_Training_Sword(Town::Blacksmith::Back_Entrance{});`.  
+Step 1 is to uncomment `auto training_sword =` and find a way to get it. The solution is `auto training_sword = Town::Blacksmith::steal_Training_Sword(Town::Blacksmith::Back_Entrance{});`.  
 Step 2 is to steal the `Wooden_Shield`.  
 Step 3 is to call `Ruins::Dire_Wolf::slay_wolf` with your equipment to get the `Ruin_Entrance`. Continue until you return the `magic_lamp` (for now).
 
