@@ -77,6 +77,8 @@ namespace Town {
 /* With the Training Sword you can go fight off the Dire Wolf guarding the
  * Entrance to the Ruins */
 
+class Necromancer;
+
 namespace Ruins {
 	struct Dire_Wolf {
 		private:
@@ -87,6 +89,7 @@ namespace Ruins {
 		static Ruin_Entrance slay_wolf(Town::Blacksmith::Training_Sword, Town::Blacksmith::Wooden_Shield) {
 			return {};
 		}
+		friend class ::Necromancer;
 	};
 } // namespace Ruins
 
@@ -107,7 +110,7 @@ class Necromancer : Foul_Magic {
 	};
 
 	public:
-	auto take(Foul_Magic *foul_magic) {
+	auto take(Foul_Magic *foul_magic, Ruins::Dire_Wolf::Ruin_Entrance) {
 		if (foul_magic != this) {
 			throw std::runtime_error{"You are not a real Necromancer!"};
 		}
@@ -240,7 +243,8 @@ struct Amethyst_Dragon_Layer final {
 
 //! TODO: Define a variable named amethyst_key of type Magic::Amethyst_Key inside main.
 
-/* Now that you have obtained all the keys, it is time to claim your price! */
+/* Now that you have obtained all the keys, it is time to claim your price! You can now go back to the Blacksmith in
+ * Town and buy the Master Sword! */
 
 struct Layer {
 	static Inventory::Money loot_the_layer(Mages_Guild::Artefact, Adamantite_Dragon_Layer::Adamantite_Key,
@@ -249,11 +253,30 @@ struct Layer {
 	}
 };
 
-/* Using the Master Sword you push on. You fight your way through a Spider Den. After cutting down spider webs for a
- * while you see candle light. Inside the Spider Den you find an old confused looking man. "I'm making strings! Help me
- * make strings!" "Standard strings are stupid! You can't tell how long they are just by looking at them! Enchant my
- * strings so that I can!" How often do you meet a weird old guy in a Spider Den wanting to make strings? May as well
- * help. */
+/* Using the Master Sword you push on. On your way you see a curious object. It seems like a piece of wood, but when you
+ * look a second time it's a leaf, and after deliberately looking away and back it's a rock. At least you think it is,
+ * there are many rocks here and you are not sure which one is the shape changer.
+ */
+
+struct Polymorph {};
+class Change_Magic {
+	private:
+	Change_Magic() {}
+	friend Change_Magic take(Polymorph);
+};
+
+Change_Magic take(Polymorph) {
+	return {};
+}
+
+extern int Polymorph; /* Them tricksy Polymorphs. */
+
+//! TODO: Define a variable named change_magic of type Change_Magic in main.
+
+/* You fight your way through a Spider Den. After cutting down spider webs for a while you see candle light. Inside the
+ * Spider Den you find an old confused looking man. "I'm making strings! Help me make strings!" "Standard strings are
+ * stupid! You can't tell how long they are just by looking at them! Enchant my strings so that I can!" How often do you
+ * meet a weird old guy in a Spider Den wanting to make strings? May as well help. */
 
 class Spider_Den {
 	class Old_Man {
@@ -270,7 +293,7 @@ class Spider_Den {
 
 		public:
 		template <class Enchantment>
-		Magic_Lamp &enchant_strings() {
+		Magic_Lamp &enchant_strings(Change_Magic) {
 			static_assert(Enchantment::get_length("Some string") == sizeof("Some string"),
 						  "I need to be able to see the length of my string!");
 			static_assert(Enchantment::get_length("Some more string") == sizeof("Some more string"),
@@ -283,7 +306,10 @@ class Spider_Den {
 
 	public:
 	using TBMS = Town::Blacksmith::Master_Sword;
-	static Old_Man &free(const Town::Blacksmith::Master_Sword &) {
+	template <class Master_Sword>
+	static Old_Man &free() {
+		static_assert(std::is_same_v<Master_Sword, Town::Blacksmith::Master_Sword>,
+					  "Your sword fails to cut the spider webs");
 		return old_man;
 	}
 };
@@ -305,8 +331,9 @@ int main() {
 	//auto artefact = //Mages_Guild::Artefact
 	//auto adamantite_key = //Adamantite_Dragon_Layer::Adamantite_Key
 	//auto amethyst_key = //Magic::Amethyst_Key
-    //auto money = //Inventory::Money
+	//auto money = //Inventory::Money
 	//auto master_sword = //Town::Blacksmith::Master_Sword
+	//auto change_magic = //Change_Magic
 	//auto magic_lamp = //Spider_Den::Old_Man::Magic_Lamp
 	//return magic_lamp;
 }
