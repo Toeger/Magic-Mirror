@@ -22,6 +22,7 @@ https://en.cppreference.com/w/cpp/language/adl
 Congratulations! Please don't. Puzzles are no fun when the solution is spoiled.
 
 ## Thanks
+Thanks to [easyaspi314](https://github.com/easyaspi314) for pointing out some unintended loopholes.  
 Thanks to RD for inspiring the Polymorph.  
 Thanks to melak47 for suggesting the Skeleton Key.  
 Thanks to marttyfication for reminding me of the String issues. Also for keeping me from [being racist](https://github.com/Toeger/Magic-Mirror/commit/6fa6fac2e723ac0b55bbf988204abd6f80f6382c).  
