@@ -111,7 +111,7 @@ class Necromancer : Foul_Magic {
 
 	public:
 	auto take(Foul_Magic *foul_magic, Ruins::Dire_Wolf::Ruin_Entrance) {
-        if (not foul_magic or foul_magic != this) {
+		if (not foul_magic or foul_magic != this) {
 			throw std::runtime_error{"You are not a real Necromancer!"};
 		}
 		return Key_of_Life{};
@@ -298,8 +298,8 @@ class Spider_Den {
 						  "I need to be able to see the length of my string!");
 			static_assert(Enchantment::get_length("Some more string") == sizeof("Some more string"),
 						  "I need to be able to see the length of my string!");
-            assert(Enchantment::get_length(std::string{"Some string"}.c_str()) == sizeof("Some string"));
-            assert(Enchantment::get_length(std::string{"Some more string"}.c_str()) == sizeof("Some more string"));
+			assert(Enchantment::get_length(std::string{"Some string"}.c_str()) == sizeof("Some string"));
+			assert(Enchantment::get_length(std::string{"Some more string"}.c_str()) == sizeof("Some more string"));
 			return magic_lamp;
 		}
 	} static old_man;
@@ -308,7 +308,7 @@ class Spider_Den {
 	using TBMS = Town::Blacksmith::Master_Sword;
 	template <class Master_Sword>
 	static Old_Man &free() {
-        static_assert(std::is_same<Master_Sword, Town::Blacksmith::Master_Sword>::value,
+		static_assert(std::is_same<Master_Sword, Town::Blacksmith::Master_Sword>::value,
 					  "Your sword fails to cut the spider webs");
 		return old_man;
 	}
