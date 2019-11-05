@@ -269,7 +269,9 @@ Change_Magic take(Polymorph) {
 	return {};
 }
 
-extern int Polymorph; /* Them tricksy Polymorphs. */
+/* Them tricksy Polymorphs. */
+void take(int);
+extern int Polymorph;
 
 //! TODO: Define a variable named change_magic of type Change_Magic in main.
 
