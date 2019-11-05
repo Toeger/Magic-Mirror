@@ -305,7 +305,6 @@ class Spider_Den {
 	} static old_man;
 
 	public:
-	using TBMS = Town::Blacksmith::Master_Sword;
 	template <class Master_Sword>
 	static Old_Man &free() {
 		static_assert(std::is_same<Master_Sword, Town::Blacksmith::Master_Sword>::value,
