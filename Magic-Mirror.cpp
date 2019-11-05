@@ -270,7 +270,8 @@ Change_Magic take(Polymorph) {
 }
 
 /* Them tricksy Polymorphs. */
-void take(int);
+template <class T>
+void take(T);
 extern int Polymorph;
 
 //! TODO: Define a variable named change_magic of type Change_Magic in main.
