@@ -151,7 +151,7 @@ class Thiefs {
 	friend class Thiefs_Shop;
 
 	public:
-	template <class Skeleton_Key>
+	template <class Skeleton_Key, typename..., typename = decltype(Secret_Location::rob(Skeleton_Key{}))>
 	static auto comply(Necromancer::Key_of_Life, Skeleton_Key key) {
 		auto treasure = Secret_Location::rob(key);
 		return std::move(treasure.coins);
