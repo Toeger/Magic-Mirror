@@ -1,4 +1,4 @@
-//  Comments in /**/ are floof and may be skipped. Comments in // are game rules. Comments in //! TODO: are tasks you have to do
+//  Comments in /**/ are fluff and may be skipped. Comments in // are game rules. Comments in //! TODO: are tasks you have to do
 
 /* The Magic Kingdom was a place of prosperity and happiness, until one day the Magic Mirror was stolen! Today only
  * Ruins are left, and below them, the Dungeon. It is said, that the Magic Mirror is at the very bottom, protected by
@@ -151,7 +151,7 @@ class Thiefs {
 	friend class Thiefs_Shop;
 
 	public:
-	template <class Skeleton_Key, typename..., typename = decltype(Secret_Location::rob(Skeleton_Key{}))>
+	template <class Skeleton_Key>
 	static auto comply(Necromancer::Key_of_Life, Skeleton_Key key) {
 		auto treasure = Secret_Location::rob(key);
 		return std::move(treasure.coins);
@@ -262,19 +262,36 @@ struct Polymorph {};
 class Change_Magic {
 	private:
 	Change_Magic() {}
-	friend Change_Magic take(Polymorph);
+	friend Change_Magic take_polymorph(Polymorph);
 };
 
-Change_Magic take(Polymorph) {
+Change_Magic take_polymorph(Polymorph) {
 	return {};
 }
 
-/* Them tricksy Polymorphs. */
+/* Them tricksy Polymorphs are hiding, grab them while you see them! */
 template <class T>
-void take(T);
+void take_polymorph(T);
 extern int Polymorph;
 
 //! TODO: Define a variable named change_magic of type Change_Magic in main.
+
+/* Now that you acquired a Polymorph you can dispel its power to gain Enchant Magic. */
+
+class Enchant_Magic {
+	private:
+	Enchant_Magic(){};
+	friend Enchant_Magic dispel_polymorph(Change_Magic);
+};
+
+Enchant_Magic dispel_polymorph(Change_Magic) {
+	return {};
+}
+
+/* But at the last moment the polymorph tries to confuse your spell with a decoy! */
+void dispel_polymorph(Change_Magic, int = 0);
+
+//! TODO: Define a variable named enchant_magic of type Enchant_Magic in main.
 
 /* You fight your way through a Spider Den. After cutting down spider webs for a while you see candle light. Inside the
  * Spider Den you find an old confused looking man. "I'm making strings! Help me make strings!" "Standard strings are
@@ -296,7 +313,7 @@ class Spider_Den {
 
 		public:
 		template <class Enchantment>
-		Magic_Lamp &enchant_strings(Change_Magic) {
+		Magic_Lamp &enchant_strings(Enchant_Magic) {
 			static_assert(Enchantment::get_length("Some string") == sizeof("Some string"),
 						  "I need to be able to see the length of my string!");
 			static_assert(Enchantment::get_length("Some more string") == sizeof("Some more string"),
@@ -336,6 +353,7 @@ int main() {
 	//auto money = //Inventory::Money
 	//auto master_sword = //Town::Blacksmith::Master_Sword
 	//auto change_magic = //Change_Magic
+	//auto enchant_magic = //Enchant_Magic
 	//auto magic_lamp = //Spider_Den::Old_Man::Magic_Lamp
 	//return magic_lamp;
 }
